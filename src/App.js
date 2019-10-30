@@ -1,26 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ballArr: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      minuteArr: [],
+      fiveMinArr: [],
+      hourArr: []
+    };
+  }
+
+  timer() {
+    setInterval(() => {
+      let ball = this.state.ballArr.shift();
+      return this.state.minuteArr.unshift(ball);
+    }, 60000);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Ball Clock</h1>
+        <h3>Minute Track</h3>
+        <h3>Five-Minute Track</h3>
+        <h3>Hour Track</h3>
+        <div className='bottom-track'>
+          <h3>Bottom Track</h3>
+          <div  className='balls'>{this.state.ballArr.map(ball => {
+          return <p>Ball {ball}</p>;
+          })}</div>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
