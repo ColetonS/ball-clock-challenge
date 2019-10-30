@@ -49,13 +49,27 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Ball Clock</h1>
-        <h3>Minute Track</h3>
-        <h3>Five-Minute Track</h3>
-        <h3>Hour Track</h3>
-        <div className='bottom-track'>
+        <div className='track'>
+          <h3>Minute Track</h3>
+          <div className='balls'>{this.state.minuteArr.map(ball => {
+          return <p>Ball {ball}</p>;
+          })}</div>
+        </div>
+        <div className='track'>
+          <h3>Five-Minute Track</h3>
+          <div className='balls'>{this.state.fiveMinArr.map(ball => {
+          return <p>Ball {ball}</p>;
+          })}</div>
+        </div>
+        <div className='track'>
+          <h3>Hour Track</h3>
+          <div className='balls'>{this.state.hourArr.map(ball => {
+          return <p>Ball {ball}</p>;
+          })}</div>
+        </div>
+        <div className='track'>
           <h3>Bottom Track</h3>
-          <div  className='balls'>{this.state.ballArr.map(ball => {
+          <div className='balls'>{this.state.ballArr.map(ball => {
           return <p>Ball {ball}</p>;
           })}</div>
         </div>
