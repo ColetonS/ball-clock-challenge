@@ -39,11 +39,24 @@ export default class App extends Component {
     };
   }
 
-  timer() {
-    setInterval(() => {
-      let ball = this.state.ballArr.shift();
-      return this.state.minuteArr.unshift(ball);
-    }, 60000);
+  testMethod() {
+    let newBall = this.state.ballArr.shift()
+    if (this.state.minuteArr.length <= 3) {
+      this.state.minuteArr.unshift(newBall)
+    } else {
+      let minBall = this.state.minuteArr.shift()
+      console.log(minBall)
+      this.state.fiveMinArr.unshift(minBall)
+      let [ a, b, c, d ] = this.state.minuteArr
+      this.state.minuteArr.splice(0)
+      this.state.ballArr.push(a, b, c, d)
+    }
+    this.setState({
+      ballArr: this.state.ballArr,
+      minuteArr: this.state.minuteArr,
+      fiveMinArr: this.state.fiveMinArr,
+      hourArr: this.state.hourArr
+    })
   }
 
   render() {
@@ -72,6 +85,9 @@ export default class App extends Component {
           <div className='balls'>{this.state.ballArr.map(ball => {
           return <p>Ball {ball}</p>;
           })}</div>
+        </div>
+        <div className="button-container">
+          <button onClick={() => {this.testMethod()}}>Push Me</button>
         </div>
       </div>
     );
